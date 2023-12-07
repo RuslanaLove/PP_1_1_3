@@ -27,9 +27,13 @@ public class Util {
         return instance;
     }
 
-    public Connection getConnection() throws SQLException {
-        if (connection == null || connection.isClosed()) {
-            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+    public Connection getConnection() {
+        try {
+            if (connection == null || connection.isClosed()) {
+                connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return connection;
     }
