@@ -13,6 +13,7 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     private final Connection connection = Util.getInstance().getConnection();
+    @Override
     public void createUsersTable() {
         try {
             try (Statement statement = connection.createStatement()){
@@ -29,6 +30,7 @@ public class UserDaoJDBCImpl implements UserDao {
         System.out.println("DB created successful by JDBC");
     }
 
+    @Override
     public void dropUsersTable() {
         try {
             try (Statement statement = connection.createStatement()) {
@@ -40,6 +42,7 @@ public class UserDaoJDBCImpl implements UserDao {
             System.out.println("Dropped users successful by JDBC");
     }
 
+    @Override
     public void saveUser(String name, String lastName, byte age) {
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(
@@ -58,6 +61,7 @@ public class UserDaoJDBCImpl implements UserDao {
         System.out.println("User successful added by JDBC");
     }
 
+    @Override
     public void removeUserById(long id) {
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM Users WHERE id = ?")){
@@ -71,6 +75,7 @@ public class UserDaoJDBCImpl implements UserDao {
         System.out.println("User successful removed by JDBC");
     }
 
+    @Override
     public List<User> getAllUsers() {
         List <User> users = new ArrayList<>();
         try {
@@ -94,6 +99,7 @@ public class UserDaoJDBCImpl implements UserDao {
         return users;
     }
 
+    @Override
     public void cleanUsersTable() {
         try {
             try (Statement statement = connection.createStatement();){
